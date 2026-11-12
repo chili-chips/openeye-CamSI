@@ -295,7 +295,7 @@ Removes:
 - [nextpnr Documentation](https://github.com/YosysHQ/nextpnr)
 - [prjxray Project](https://github.com/f4pga/prjxray)
 
-**Project Issues:** [openeye-CamSI openXC7 Issues](https://github.com/chili-chips-ba/openeye-CamSI/issues?q=is%3Aissue%20label%3AopenXC7)
+**Project Issues:** [openeye-CamSI openXC7 Issues](https://github.com/chili-chips/openeye-CamSI/issues?q=is%3Aissue%20label%3AopenXC7)
 
 ---
 

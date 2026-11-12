@@ -1,5 +1,5 @@
 [![NLnet Foundation](https://img.shields.io/badge/funded%20by-NLnet%20Foundation-74AA00)](https://nlnet.nl/)
-[![GitHub stars](https://img.shields.io/github/stars/chili-chips-ba/openeye-CamSI?style=social)](https://github.com/chili-chips-ba/openeye-CamSI/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/chili-chips/openeye-CamSI?style=social)](https://github.com/chili-chips/openeye-CamSI/stargazers)
 
 # openEye-CamSI
 Also see our [openEye-CamSI-Ethernet](https://github.com/chili-chips-ba/openeye-CamSI-ethernet) repo.
@@ -18,7 +18,7 @@ The goals of this development are to deliver complete video pipeline for three p
 
 This is for mature, low-cost **Artix7 FPGAs**, by using its **IBUFDS, IDELAY, ISERDES** primitives in the camera front-end. These primitives are available in all IOBs, hence ubiquitous, relatively easy to work with, and already supported by opensource PNR for Xilinx Series7. This also allows future reduction of the total solution cost by migrating to [Spartan7](https://www.xilinx.com/video/fpga/spartan-7-technical-overview.html?_ga=2.252819658.271111311.1715447274-1421952438.1715447272), which does not have GTP transceivers (aka "true SerDes").
 
->To be clear -- We don't plan on using any of the 3rd party D-PHY front-end silicon devices specified in [XAPP894](https://github.com/chili-chips-ba/openeye-CamSI/blob/main/0.doc/Xilinx/MIPI/xapp894-d-phy-solutions.pdf). Moreover, we won't even use the passive signal conditioning networks that Xilinx is recommending. Instead, our objective is to achieve robust *Signal Integrity* (SI) and flawless HD/FHD video flow by pulling-in only on-chip resources.
+>To be clear -- We don't plan on using any of the 3rd party D-PHY front-end silicon devices specified in [XAPP894](https://github.com/chili-chips/openeye-CamSI/blob/main/0.doc/Xilinx/MIPI/xapp894-d-phy-solutions.pdf). Moreover, we won't even use the passive signal conditioning networks that Xilinx is recommending. Instead, our objective is to achieve robust *Signal Integrity* (SI) and flawless HD/FHD video flow by pulling-in only on-chip resources.
 
 This brings about multiple challenges. Compared to [StereoNinja's](https://github.com/StereoNinja/StereoNinjaFPGA) original work, which was for LatticeSemi ECP5 FPGA, our target device does not come with D-PHY receiver circuit *(no wonder why Artix7 costs less* :innocent:*)*.
 
@@ -46,7 +46,7 @@ Using Vivado tool chain, we were able to bring this design to the point where th
 ## Objective II
 ### Add to opensource ecosystem 4 Xilinx
 
-We are thrilled to use [openXC7](https://github.com/openXC7) toolkit, including its web-based CI/CD flow. That's both for the security of images taken, and to help openXC7 attain the level of robustness found in commercial / proprietary CAE tools, Xilinx Vivado in particular. In that sense, OpenEye-CamSI is the continuation of our [TetriSaraj](https://github.com/chili-chips-ba/openXC7-TetriSaraj), which was the first openXC7 test case for a design more complex than a mere blinky. 
+We are thrilled to use [openXC7](https://github.com/openXC7) toolkit, including its web-based CI/CD flow. That's both for the security of images taken, and to help openXC7 attain the level of robustness found in commercial / proprietary CAE tools, Xilinx Vivado in particular. In that sense, OpenEye-CamSI is the continuation of our [TetriSaraj](https://github.com/chili-chips/openXC7-TetriSaraj), which was the first openXC7 test case for a design more complex than a mere blinky. 
 
 >Our goal is to bring to the light issues that arrive from openXC7's first-ever exposure to demanding, cutting-edge designs like this one. 
 
@@ -60,7 +60,7 @@ We have indeed come across quite a few board problems and idiosyncrasies, spendi
 
 ## Execution Play 1
 ### Laying a foundation
-- [x] ✔ Familiarize with [Trenz](https://github.com/chili-chips-ba/openeye-CamSI/tree/main/0.doc/Trenz) hardware platform: Connectivity, clocking, power, etc. 
+- [x] ✔ Familiarize with [Trenz](https://github.com/chili-chips/openeye-CamSI/tree/main/0.doc/Trenz) hardware platform: Connectivity, clocking, power, etc. 
 - [x] ✔ Bring up Blinky on Trenz
 >___
 - [x] ✔ Standalone HDMI image generation: 1280x720P@60Hz  RGB888 (HD)
@@ -74,8 +74,8 @@ We have indeed come across quite a few board problems and idiosyncrasies, spendi
 - [x] ✔ Experiments with LVDS and termination schemes.
       How to do better than XAPP894, sharing insights with Lukas
 >___
-- [x] ✔ Test opensource [4-lane adapter](https://github.com/chili-chips-ba/openeye-CamSI/tree/main/0.doc/CRUVI-camera-adapter), sharing feedback with Edmund
-- [x] ✔ Full redesign, fixing [bugs](https://github.com/chili-chips-ba/openeye-CamSI/blob/main/0.doc/CRUVI-camera-adapter/Technical-Note.TN-mipi.REV1.pdf) and expanding scope, to now include 2 and 4 lanes
+- [x] ✔ Test opensource [4-lane adapter](https://github.com/chili-chips/openeye-CamSI/tree/main/0.doc/CRUVI-camera-adapter), sharing feedback with Edmund
+- [x] ✔ Full redesign, fixing [bugs](https://github.com/chili-chips/openeye-CamSI/blob/main/0.doc/CRUVI-camera-adapter/Technical-Note.TN-mipi.REV1.pdf) and expanding scope, to now include 2 and 4 lanes
 >___
 - [x] ✔ Clock Detection logic without standard LP I/O
 - [x] ✔ SYNC Decoding logic and Byte Alignement
@@ -84,7 +84,7 @@ We have indeed come across quite a few board problems and idiosyncrasies, spendi
 - [x] ✔ Acquire static image from Camera, transfer it to DualPort BRAM, then HDMI
 >___
 - [x] ✔ Uncovered & debugged crosstalk problems on VHDPlus CRUVI adapter
-- [x] ✔ Found Trenz [signal inversions and inconsistencies](https://github.com/chili-chips-ba/openeye-CamSI/blob/main/0.doc/CRUVI-camera-adapter/CRUVI-Pinout-4-and-2-lanes.xlsx), then shared with Antti
+- [x] ✔ Found Trenz [signal inversions and inconsistencies](https://github.com/chili-chips/openeye-CamSI/blob/main/0.doc/CRUVI-camera-adapter/CRUVI-Pinout-4-and-2-lanes.xlsx), then shared with Antti
 >___
 - [x] ✔ HD video transfer from Camera to HDMI - At first jerky, with visible frame loss
 - [x] ✔ Found CDC bug in opensource AsyncFIFO, sharing insights with IP owners
@@ -104,7 +104,7 @@ For this first play, the hardware was used in the following config:
 </p>
 
 #### *Standalone HDMI image generation*
-Our HDMI [image generator](https://github.com/chili-chips-ba/openeye-CamSI/tree/main/1.hw/lib/ip/hdmi) is limited by the toggle rate that's realistically possible with Artix7 clock and I/O primitives. The max we can get from it is:
+Our HDMI [image generator](https://github.com/chili-chips/openeye-CamSI/tree/main/1.hw/lib/ip/hdmi) is limited by the toggle rate that's realistically possible with Artix7 clock and I/O primitives. The max we can get from it is:
 - 720P@60Hz
 - 1080P@30Hz
   
@@ -161,7 +161,7 @@ They mark the beginning of each new scan line in incoming video from Camera, as 
 
 Furthermore, Async FIFO is kept in reset when either Camera or HDMI are Out-Of-Frame. It is through this **fifo_areset_n** and **hdmi_reset_n** that we are forcing HDMI to track the Camera. **rgb2hdmi** is the bridge between Camera and HDMI+GE worlds. Timing diagram below contains additional detail.
 <p align="center">
-  <img src="https://github.com/chili-chips-ba/openeye-CamSI/blob/main/0.doc/Timing-Diagram.png">
+  <img src="https://github.com/chili-chips/openeye-CamSI/blob/main/0.doc/Timing-Diagram.png">
 </p>
 
 In all honesty, it took us a bit of trial-and-error to get it right. That was to some extent due to CDC bug we found in the fullness count of AsyncFIFO, which is the IP block we pulled from one of the opensource libraries. 
@@ -174,7 +174,7 @@ In the end, when everything was tuned, and AsyncFIFO CDC problem factored out of
 The following diagram illustrates design clocking scheme and block structure:
 
 <p align="center">
-  <img src="https://github.com/chili-chips-ba/openeye-CamSI/blob/main/0.doc/FPGA-Block-Diagram.png">
+  <img src="https://github.com/chili-chips/openeye-CamSI/blob/main/0.doc/FPGA-Block-Diagram.png">
 </p>
  
 Design operates off of a single **external 100MHz** clock, from which we generate **200MHz refclk** for IDELAY and detection of camera activity. The camera clock comes in two forms:
@@ -209,7 +209,7 @@ It is only at this point, where video is *unpacked*, that we may engage in ISP. 
 
 Configuring the IMX283 sensor for different resolutions requires precise adjustment of its registers. For each data entry, the first four digits represent the register address, while the last two digits indicate the value to be written. Below, we describe the configuration process for achieving both **720p** and **1080p** resolutions at 60 FPS using **Mode 3** and **Mode 2**, respectively.
 
-This sensor requires specific delays after setting some registers. In the [.mem](https://github.com/chili-chips-ba/openeye-CamSI/tree/main/1.hw/lib/ip/i2c_master) files, this is implemented as an additional byte appended to the three bytes representing the address and value of each register. These delays are crucial for ensuring proper operation and stability of the camera. More details can be found in our [issue](https://github.com/chili-chips-ba/openeye-CamSI/issues/29).
+This sensor requires specific delays after setting some registers. In the [.mem](https://github.com/chili-chips/openeye-CamSI/tree/main/1.hw/lib/ip/i2c_master) files, this is implemented as an additional byte appended to the three bytes representing the address and value of each register. These delays are crucial for ensuring proper operation and stability of the camera. More details can be found in our [issue](https://github.com/chili-chips-ba/openeye-CamSI/issues/29).
 
 ### **720p Resolution (60 FPS)**
 
@@ -357,11 +357,11 @@ This task validates our Vivado-proven RTL with the openXC7 toolchain for Xilinx 
 
 A complete local installation method is provided for setting up the **openXC7 FPGA toolchain** without relying on Snap packages. This approach ensures full control over the environment and avoids Snap-related system constraints.
 
-➡️ Full documentation: [Installation Guide](https://github.com/chili-chips-ba/openeye-CamSI/blob/main/3.build/openXC7/README.md)
+➡️ Full documentation: [Installation Guide](https://github.com/chili-chips/openeye-CamSI/blob/main/3.build/openXC7/README.md)
 
 #### Resolved Issues
 
-Our extensive testing has resulted in uncovering a multitude of problems. They are fully documented and tracked in the relevant [openXC7 issues](https://github.com/chili-chips-ba/openeye-CamSI/issues?q=is%3Aissue%20label%3AopenXC7), along with specific testcase and solution we've arrived to with openXC7 developers.
+Our extensive testing has resulted in uncovering a multitude of problems. They are fully documented and tracked in the relevant [openXC7 issues](https://github.com/chili-chips/openeye-CamSI/issues?q=is%3Aissue%20label%3AopenXC7), along with specific testcase and solution we've arrived to with openXC7 developers.
 
 #### Remaining Challenge: OSERDES10 Support
 

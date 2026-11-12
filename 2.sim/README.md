@@ -86,7 +86,7 @@ make SIM=icarus [WAVES=1|0] [RUN_SIM_US=<time>] [TESTCASE=test_0|test_1]
 - **Purpose**: Simulates a Camera Serial Interface (CSI) with configurable parameters using the Verilator simulator.
 
 - **Description**:
-  - Implements a CSI model defined in [`cocotbext_csi.py`](https://github.com/chili-chips-ba/openeye-CamSI/blob/main/2.sim/cocotb/top/cocotbext_csi.py).
+  - Implements a CSI model defined in [`cocotbext_csi.py`](https://github.com/chili-chips/openeye-CamSI/blob/main/2.sim/cocotb/top/cocotbext_csi.py).
   - Dynamically generates a differential clock signal and feeds it into the simulation.
   - Frames are sent using the CSI class to replicate camera data streams, testing system behavior with realistic inputs.
   - Supports the following Key Parameters:
