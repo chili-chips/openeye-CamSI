@@ -5,9 +5,9 @@
 # openEye-CamSI
 Also see our [openEye-CamSI-Ethernet](https://github.com/chili-chips-ba/openeye-CamSI-ethernet) repo.
 
-<p align="center">
+<div align="center">
    <img width="30%" src="0.doc/artwork/openeye.phex.png">
-</p>
+</div>
 
 ## Objective I
 
@@ -100,9 +100,9 @@ For this first play, the hardware was used in the following config:
 - VHDPlus HDMI + 2-lane CSI Camera adapter
 - Raspberry Pi V2.1 camera (Sony IMX219)
 
-<p align="center">
+<div align="center">
   <img width="600" src="https://github.com/chili-chips-ba/openeye-CamSI/assets/113214949/105a7569-75c5-4f2c-8f15-a408bb72cdc6">
-</p>
+</div>
 
 #### *Standalone HDMI image generation*
 Our HDMI [image generator](https://github.com/chili-chips/openeye-CamSI/tree/main/1.hw/lib/ip/hdmi) is limited by the toggle rate that's realistically possible with Artix7 clock and I/O primitives. The max we can get from it is:
@@ -110,17 +110,17 @@ Our HDMI [image generator](https://github.com/chili-chips/openeye-CamSI/tree/mai
 - 1080P@30Hz
   
 More about this and silicon limitations in [HDMI issue](https://github.com/chili-chips-ba/openeye-CamSI/issues/1#issue-2278453405). Here is the test image that our HDMI RTL outputs on its own, w/o camera connected to it:
-<p align="center">
+<div align="center">
   <img src="https://github.com/chili-chips-ba/openeye-CamSI/assets/113214949/c405a0d6-2086-452a-aa2a-435240055c48" width="500">
-</p>
+</div>
 
 #### *I2C for Camera Configuration*
 There are many configurable registers in the IMX219 imaging sensor. Having fully familiarized with them, both by sniffing RPi I2C transactions and running own experiments, we've settled on the 720P@60Hz. I2C Controller was developped from the scratch, and used to load camera registers. More on it in [I2C issue](https://github.com/chili-chips-ba/openeye-CamSI/issues/3). 
 
 Here is an illustration of I2C waveforms, i.e. our Control Plane protocol.
-<p align="center">
+<div align="center">
   <img src="https://github.com/chili-chips-ba/openeye-CamSI/assets/113214949/2b54bf12-1366-4819-8080-df7d5cf8fa20" width="600">
-</p>
+</div>
 
 #### *Camera Connection*
 Sony [IMX219](0.doc/Sensor.2-lane.RPi2.1/IMX219PQ.Datasheet.pdf) camera sensor is used for image acquisition. It is connected to FPGA with a 15-pin flex cable (FFC), using [VHDPlus](https://vhdplus.com/docs/components/camera) CRUVI module. We recommend checking our [blog](https://www.chili-chips.xyz/blog/untwisting-rpi5-camera-connectivity) for additional detail on this topic.
@@ -129,9 +129,9 @@ It turned out that the 4-lane CRUVI connector had a serious design flaw, essenti
 
 #### *High-speed Signaling and Signal Integrity*
 The VHDPlus CRUVI carries three 100 Ohm termination resistors, one for clock, plus two for data, as shown below: 
-<p align="center">
+<div align="center">
   <img width="400" src="https://github.com/chili-chips-ba/openeye-CamSI/assets/113214949/31957cba-ea2c-4b42-942e-e01f8f4e62a8">
-</p>
+</div>
   
 Location of these resistors close to data source is a major SI problem. Termination must be placed at the end of *Transmission Line* (TL), next to sink. Yet, on this system, the termination is not only misplaced, but there are also three connectors in the path of high speed signals:
 - Camera to CRUVI -> `that's where the stock termination is placed`
@@ -161,9 +161,9 @@ In addition to AsyncFIFO for **csi_clock->hdmi_clock** CDC, the signals that pla
 They mark the beginning of each new scan line in incoming video from Camera, as well as outgoing line to HDMI.
 
 Furthermore, Async FIFO is kept in reset when either Camera or HDMI are Out-Of-Frame. It is through this **fifo_areset_n** and **hdmi_reset_n** that we are forcing HDMI to track the Camera. **rgb2hdmi** is the bridge between Camera and HDMI+GE worlds. Timing diagram below contains additional detail.
-<p align="center">
+<div align="center">
   <img src="https://github.com/chili-chips/openeye-CamSI/blob/main/0.doc/Timing-Diagram.png">
-</p>
+</div>
 
 In all honesty, it took us a bit of trial-and-error to get it right. That was to some extent due to CDC bug we found in the fullness count of AsyncFIFO, which is the IP block we pulled from one of the opensource libraries. 
 
@@ -174,9 +174,9 @@ In the end, when everything was tuned, and AsyncFIFO CDC problem factored out of
 
 The following diagram illustrates design clocking scheme and block structure:
 
-<p align="center">
+<div align="center">
   <img src="https://github.com/chili-chips/openeye-CamSI/blob/main/0.doc/FPGA-Block-Diagram.png">
-</p>
+</div>
  
 Design operates off of a single **external 100MHz** clock, from which we generate **200MHz refclk** for IDELAY and detection of camera activity. The camera clock comes in two forms:
 - **CSI Bit** clock, for sampling and capturing incoming DDR data
@@ -539,7 +539,7 @@ Going forward, we are parting away with Trenz CRUVI system, and switching to Puz
 
 This card also comes with solid expension potential via two 40-pin standard 100mil headers. They are mechanically robust, physically accessible for debugging, and still can carry relatively high-speed signals thanks to short, balanced wiring on the mainboard.
 
-<p align="center">
+<div align="center">
 <img width="300" src="0.doc/Puzhitech/Images/PA.1.png">
 <img width="300" src="0.doc/Puzhitech/Images/PA.2.png">
 <img width="300" src="0.doc/Puzhitech/Images/PA.3.png">
@@ -550,13 +550,13 @@ This card also comes with solid expension potential via two 40-pin standard 100m
 <img width="300" src="0.doc/Puzhitech/Images/PA.7.png">
 
 <img width="900" src="0.doc/Puzhitech/Images/Puzhi-vs-Trenz.jpg">
-</p>
+</div>
 
 While [Puzhitech](http://www.puzhitech.com/en) board already comes with 15-pin 0.5mm FPC for 2-lane MIPI CSI, the 40-pin 100mil headers can be used to hook up additional RPi cameras via its [15-pin 1mm](https://tinkersphere.com/cables-wires/3843-15-pin-05mm-1mm-pitch-fpc-to-dip-breakout.html#/soldered_side-1mm) FPC, as well as 22-pin 0.5mm connector for the 4-lane interface. Below is a picture of the [adapters](https://www.ebay.com/itm/175795228114?mkcid=16&mkevt=1&mkrid=711-127632-2357-0&ssspo=1cGlwdPqS5y&sssrc=4429486&ssuid=QKddZKcUTzu&var=475196039437&widget_ver=artemis&media=MORE) we used. We recommend fitting them with DIP connectors that have longer legs, so that they protrude on the bottom side, and also serve as attachment points for oscilloscope. That alleviates the need for the €36 Trenz Debug Connector and its impossibly long lead time of 3+ months.
 
-<p align="center">
+<div align="center">
 <img width="400" src="0.doc/Puzhitech/Images/FPC-0.5mm--to--DIP-100mil.png">
-</p>
+</div>
 
 
 # Phase2 - USB Webcam
@@ -604,10 +604,10 @@ We are grateful to:
  - NLnet Foundation's sponsorship for giving us an opportunity to work on this fresh new take at FPGA video processing.
  - StereoNinja, whose project has set the stage for this major upgrade of opensource camera performance and functionality, as well as its expansion from LatticeSemi to Xilinx ecosystem.
 
-<p align="center">
+<div align="center">
     <img src="https://github.com/chili-chips-ba/openeye/assets/67533663/18e7db5c-8c52-406b-a58e-8860caa327c2">
     <img width="115" alt="NGI-Entrust-Logo" src="https://github.com/chili-chips-ba/openeye-CamSI/assets/67533663/013684f5-d530-42ab-807d-b4afd34c1522">
-</p>
+</div>
 
 This project was funded through the NGI0 Entrust Fund, a fund established by NLnet with financial support from the European Commission's Next Generation Internet programme, under the aegis of DG Communications Networks, Content and Technology under grant agreement No 101069594.
 
