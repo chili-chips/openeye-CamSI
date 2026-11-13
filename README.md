@@ -1,6 +1,6 @@
 [![NLnet Foundation](https://img.shields.io/badge/funded%20by-NLnet%20Foundation-74AA00)](https://nlnet.nl/)
 [![GitHub stars](https://img.shields.io/github/stars/chili-chips/openeye-CamSI?style=social)](https://github.com/chili-chips/openeye-CamSI/stargazers)
-[![GitLab mirror](https://img.shields.io/badge/GitLab-mirror-FC6D26)](https://gitlab.com/chili-chips/openeye-CamSI)
+[![GitLab mirror](https://img.shields.io/badge/GitLab-mirror-brightgreen)](https://gitlab.com/chili-chips/openeye-CamSI)
 
 # openEye-CamSI
 Also see our [openEye-CamSI-Ethernet](https://github.com/chili-chips-ba/openeye-CamSI-ethernet) repo.
