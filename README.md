@@ -101,7 +101,7 @@ For this first play, the hardware was used in the following config:
 - Raspberry Pi V2.1 camera (Sony IMX219)
 
 <div align="center">
-  <img width="600" src="https://github.com/chili-chips-ba/openeye-CamSI/assets/113214949/105a7569-75c5-4f2c-8f15-a408bb72cdc6">
+  <img width="600" src="0.doc/readme-images/105a7569.png">
 </div>
 
 #### *Standalone HDMI image generation*
@@ -111,7 +111,7 @@ Our HDMI [image generator](https://github.com/chili-chips/openeye-CamSI/tree/mai
   
 More about this and silicon limitations in [HDMI issue](https://github.com/chili-chips-ba/openeye-CamSI/issues/1#issue-2278453405). Here is the test image that our HDMI RTL outputs on its own, w/o camera connected to it:
 <div align="center">
-  <img src="https://github.com/chili-chips-ba/openeye-CamSI/assets/113214949/c405a0d6-2086-452a-aa2a-435240055c48" width="500">
+  <img src="0.doc/readme-images/c405a0d6.png" width="500">
 </div>
 
 #### *I2C for Camera Configuration*
@@ -119,7 +119,7 @@ There are many configurable registers in the IMX219 imaging sensor. Having fully
 
 Here is an illustration of I2C waveforms, i.e. our Control Plane protocol.
 <div align="center">
-  <img src="https://github.com/chili-chips-ba/openeye-CamSI/assets/113214949/2b54bf12-1366-4819-8080-df7d5cf8fa20" width="600">
+  <img src="0.doc/readme-images/2b54bf12.png" width="600">
 </div>
 
 #### *Camera Connection*
@@ -130,7 +130,7 @@ It turned out that the 4-lane CRUVI connector had a serious design flaw, essenti
 #### *High-speed Signaling and Signal Integrity*
 The VHDPlus CRUVI carries three 100 Ohm termination resistors, one for clock, plus two for data, as shown below: 
 <div align="center">
-  <img width="400" src="https://github.com/chili-chips-ba/openeye-CamSI/assets/113214949/31957cba-ea2c-4b42-942e-e01f8f4e62a8">
+  <img width="400" src="0.doc/readme-images/31957cba.jpg">
 </div>
   
 Location of these resistors close to data source is a major SI problem. Termination must be placed at the end of *Transmission Line* (TL), next to sink. Yet, on this system, the termination is not only misplaced, but there are also three connectors in the path of high speed signals:
@@ -168,7 +168,7 @@ Furthermore, Async FIFO is kept in reset when either Camera or HDMI are Out-Of-F
 In all honesty, it took us a bit of trial-and-error to get it right. That was to some extent due to CDC bug we found in the fullness count of AsyncFIFO, which is the IP block we pulled from one of the opensource libraries. 
 
 In the end, when everything was tuned, and AsyncFIFO CDC problem factored out of the solution, the final result came to be as nice and polished as follows:
-[![image (1)](https://github.com/chili-chips-ba/openeye-CamSI/assets/113214949/e333f585-1f67-4c4a-9ce0-ecf5bda4edde)](https://www.youtube.com/watch?v=BGku8TeV_AA)
+[![image (1)](0.doc/readme-images/e333f585.png)](https://www.youtube.com/watch?v=BGku8TeV_AA)
 
 #### *Clock and Block Diagram*
 
@@ -605,8 +605,8 @@ We are grateful to:
  - StereoNinja, whose project has set the stage for this major upgrade of opensource camera performance and functionality, as well as its expansion from LatticeSemi to Xilinx ecosystem.
 
 <div align="center">
-    <img src="https://github.com/chili-chips-ba/openeye/assets/67533663/18e7db5c-8c52-406b-a58e-8860caa327c2">
-    <img width="115" alt="NGI-Entrust-Logo" src="https://github.com/chili-chips-ba/openeye-CamSI/assets/67533663/013684f5-d530-42ab-807d-b4afd34c1522">
+    <img src="0.doc/readme-images/18e7db5c.png">
+    <img width="115" alt="NGI-Entrust-Logo" src="0.doc/readme-images/013684f5.png">
 </div>
 
 This project was funded through the NGI0 Entrust Fund, a fund established by NLnet with financial support from the European Commission's Next Generation Internet programme, under the aegis of DG Communications Networks, Content and Technology under grant agreement No 101069594.
